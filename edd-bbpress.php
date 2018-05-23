@@ -207,7 +207,7 @@ class EDD_bbPress {
 				$licensing = edd_software_licensing();
 
 				// was this order a renewal?
-				$order['is_renewal'] = ( (string) get_post_meta( $payment->ID, '_edd_sl_is_renewal', TRUE ) !== '' );
+				$order['is_renewal'] = $licensing->is_renewal( $payment->ID );
 
 				if ( $order['is_completed'] ) {
 
@@ -222,7 +222,7 @@ class EDD_bbPress {
 						/** @var EDD_SL_License $license */
 						$license = $licensing->get_license_by_purchase( $payment->ID, $download['id'] );
 
-							if ( is_a( $license, 'EDD_SL_License' ) ) {
+							if ( $license instanceof EDD_SL_License ) {
 
 								$lkey = (string) get_post_meta( $license->ID, '_edd_sl_key', TRUE );
 
@@ -282,18 +282,11 @@ class EDD_bbPress {
 									// If download is a bundle, get the bundle items license key data.
 									if ( $is_bundle ) {
 
-										$child_licenses = get_children(
-											array(
-												'post_type'      => 'edd_license',
-												'post_status'    => array( 'publish', 'future' ),
-												'posts_per_page' => -1,
-												'post_parent'    => $license->ID,
-											)
-										);
+										$child_licenses = $licensing->get_child_licenses( $license->ID );
+
+										$child_licenses_data = array();
 
 										if ( ! empty( $child_licenses ) ) {
-
-											$child_licenses_data = array();
 
 											foreach ( $child_licenses as $child_license ) {
 
