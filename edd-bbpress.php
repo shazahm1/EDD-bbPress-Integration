@@ -3,7 +3,7 @@
  * Plugin Name: Easy Digital Downloads Integration For bbPress
  * Plugin URI: http://connections-pro.com/
  * Description: Adds customer info and purchase records beneath their bbPress topics and topic replies.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Steven A. Zahm
  * Author URI: http://connections-pro.com/
  * Text Domain: edd_bbress
@@ -60,7 +60,7 @@ class EDD_bbPress {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.0';
+	const VERSION = '1.0.1';
 
 	/**
 	 * @var array
