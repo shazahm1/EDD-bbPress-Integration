@@ -26,7 +26,7 @@
  * @package  Easy Digital Downloads Integration For bbPress
  * @category Plugin
  * @author   Steven A. Zahm
- * @version  1.0
+ * @version  1.0.1
  */
 
 // Add CSS to <head>.
