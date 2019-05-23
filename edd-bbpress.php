@@ -117,7 +117,7 @@ class EDD_bbPress {
 		$sql .= "FROM {$wpdb->posts} p, {$wpdb->postmeta} pm ";
 		$sql .= "WHERE pm.meta_key = '_edd_payment_user_email' ";
 
-		if ( count( $this->customer_email ) > 1 ) {
+		if ( is_array( $this->customer_email ) && count( $this->customer_email ) > 1 ) {
 
 			$in_clause = rtrim( str_repeat( "'%s', ", count( $this->customer_email ) ), ", " );
 			$sql .= "AND pm.meta_value IN( $in_clause ) ";
